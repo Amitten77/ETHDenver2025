@@ -1,0 +1,5 @@
+2025/02/24-07:38:30.921780 ffff9dfaf060 Recovering log #15
+2025/02/24-07:38:30.927382 ffff9dfaf060 Level-0 table #18: started
+2025/02/24-07:38:30.943897 ffff9dfaf060 Level-0 table #18: 25897 bytes OK
+2025/02/24-07:38:30.951707 ffff9dfaf060 Delete type=0 #15
+2025/02/24-07:38:30.952789 ffff9dfaf060 Delete type=3 #13

@@ -1,0 +1,47 @@
+Deployment Output:
+
+ℹ L1 Deployment TxHash: 0xac157f1577af718da1525a9dc7de68c5260ebe719d74df6a06d0f7cfd891b323
+✔ L1 Deployment Done
+ℹ L2 Deployment TxHash: 0xc2d71f7b1817f60fab1cb122b62191d257726c2561beea082e487180f478f7d1
+✔ L2 Deployment Done
+
+AVS deployment summary
+Status: Deployment successful!
+The following addresses are now available for use:
+L1:
+  - AvsGovernance: 0x531F7735A7f9d8C85e8642491fd686452A8DA4b6
+  - AvsTreasury: 0x40ca31404b923Ae510d5A48c66fB3294d3aF4512
+  - ERC20: 0x94373a4919B3240D86eA41593D5eBa789FEF3848
+  - L1MessageHandler: 0x262d95A565088532bA5530EE7e0659B0d45b18f3  (1.0 ETH)
+L2:
+  - AttestationCenter: 0x5ec00bF65C0Ebf8306778934DB5A46d25C44A1Fc
+  - L2MessageHandler: 0x5EffDB9f9881C528Cda096E9aD036F9707b2408c  (2.0 ETH)
+  - OBLS: 0x71B41070ED85e000E2ddeEB56C44b49d1fbB9EfF
+  - InternalTaskHandler: 0xAACda26974Ce96f0a4fDA4a0B87c1816d70b7E49
+AVS deployment done!
+Run `othentic-cli network contracts` to see the contract addresses you need for node operations
+
+
+
+? Enter your private key: ****************************************************************
+ℹ Not signed up to EigenLayer, signing up...
+? Eigenlayer Operator Name: PolyVerification Test Operator1
+? Description: Test Operator1 for PolyVerification
+? Website: N/A
+? Logo URL: N/A
+? Twitter profile: N/A
+(node:74042) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+✔ Signed up to EigenLayer, tx hash: 0x8848dbfe7f9ef1cf6ade4c99d63318d8ffca70b869c350909e41497673b5179b
+
+
+? Enter your private key: ****************************************************************
+ℹ Not signed up to EigenLayer, signing up...
+? Eigenlayer Operator Name: PolyVerification Test Operator2
+? Description: Test Operator2 for PolyVerification
+? Website: N/A
+? Logo URL: N/A
+? Twitter profile: N/A
+(node:74450) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+✔ Signed up to EigenLayer, tx hash: 0x224e71c119f6828c5cd93d970187b3bf46dfd0b1a1da5fdc229143bd83ddaabd
