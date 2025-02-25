@@ -2,3 +2,4 @@
 .othentic
 .Set_Syncer/node_modules
 docker-compose.yml
+node_modules/
