@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 let dbConnection;
-let uri = `mongodb+srv://dylsub:${process.env.URI_PASSWORD}@cluster0.pf8wm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+let uri = `mongodb+srv://dylsub:${process.env.URI_PASSWORD}@cluster0.pf8wm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&tls=true&tlsAllowInvalidCertificates=true`;
 
 module.exports = {
   connectToDb: (cb) => {

@@ -1,0 +1,55 @@
+{'error': None, 
+'result': {
+    'serializeTx': '0x02ec82426880830f4240830f426a830f42409430770d7e3e71112d7a6b7259542d1f680a70e315808484d81062c0', 
+    'to': '0x30770d7E3e71112d7A6b7259542D1f680a70e315', 
+    'gasLimit': '1000000', 
+    'data': '0x84d81062', 
+    'value': '0', 
+    'chainId': 17000, 
+    'type': 2, 
+    'maxFeePerGas': '1000042', 
+    'maxPriorityFeePerGas': '1000000'}
+}
+
+
+Transaction broadcasted, transaction hash: 0xd0e04a62260e7b3b80b88002fac15cd7ebe217e31236df443d5dbbc9d9dc3c61
+Finished
+
+
+EigenPodOwnerAddress: 0x699692F5f8D1c66490dc611a638609c4305650E4
+
+
+node uid: 83891705-47fe-4c56-b190-80a943ad06db
+
+
+
+
+{'error': None, 'result': {'serializeTx': '0x02ec82426880830f4240830f426a830f42409430770d7e3e71112d7a6b7259542d1f680a70e315808484d81062c0', 'to': '0x30770d7E3e71112d7A6b7259542D1f680a70e315', 'gasLimit': '1000000', 'data': '0x84d81062', 'value': '0', 'chainId': 17000, 'type': 2, 'maxFeePerGas': '1000042', 'maxPriorityFeePerGas': '1000000'}}
+83891705-47fe-4c56-b190-80a943ad06db
+{"error":null,"result":true}
+
+
+
+
+{"error":null,
+"result":
+    {
+    "id":"83891705-47fe-4c56-b190-80a943ad06db",
+    "status":"ready",
+    "type":"RESTAKING",
+    "validatorsCount":1,
+    "withdrawalAddress":null,
+    "eigenPodAddress":"0xa05aA24C3846997772D8e54f95381EC0bD2e3A77",
+    "eigenPodOwnerAddress":"0x699692F5f8D1c66490dc611a638609c4305650E4",
+    "controllerAddress":"0x699692F5f8D1c66490dc611a638609c4305650E4",
+    "feeRecipientAddress":"0x699692F5f8D1c66490dc611a638609c4305650E4",
+    "depositData":[
+        {"pubkey":"0x82b03ff330f28e11174b8935b9b6930f9bf69c4ebebad87c6be6dead72750ab5642c5de57dc6babb43b24074367346e9",
+        "signature":"0xa362e4500dd2009cfa8a560a9d0edac0fb8484982ee14f7ebfd1c8828698ef7831ce32e001ab6b3a353da48b909ff5d313e5aa8cbd053ca593a0c5ce6ef8c10577e0eb1b4a97f061cc8a6eb0402527b2d6f5a2223f42a9a112152dd4a131af16",
+        "depositDataRoot":"0x43ad738f970b0cac3158791d6d65058af5087f77413cf07c914cdc2808462a50",
+        "withdrawalCredentials":"010000000000000000000000a05aa24c3846997772d8e54f95381ec0bd2e3a77",
+        "amount":32000000000,
+        "depositMessageRoot":"9f2675a38c2480d365f03526e1d6933751e9d4145e31b4244d45302882a94339",
+        "forkVersion":"01017000",
+        "eth2NetworkName":"prod-holesky",
+        "depositCliVersion":"2.7.0"}],"createdAt":"2025-02-25T01:33:22.211Z"}}

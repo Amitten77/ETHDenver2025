@@ -7,11 +7,11 @@ const benchmarkService = require("./benchmark.service");
 const ERROR_MARGIN = 0.10;
 
 
-async function validate(proofOfTask) {
+async function validate(proofOfTask, model, benchmark) {
 
   try {
       const taskResult = await dalService.getIPfsTask(proofOfTask);
-      var data = await benchmarkService.getAccuracy("sentiment");
+      var data = await benchmarkService.getAccuracy(model, benchmark);
       const upperBound = data.accuracy * (1 + ERROR_MARGIN);
       const lowerBound = data.accuracy * (1 - ERROR_MARGIN);
       let isApproved = true;
