@@ -1,0 +1,80 @@
+.about {
+    display: flex;
+    gap:150px;
+    font-size: 20px;
+    /* background-color: green; */
+}
+
+.aboutText {
+    display: flex;
+    align-items: flex-start;
+    width: 60%;
+    justify-content: left;
+    flex-direction: column;
+    /* background-color: red; */
+}
+
+.aboutImage {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 40%;
+    /* background-color: blue; */
+}
+
+.buttonContainer {
+    background-color: white;
+    margin-top: 20px;
+    padding: 5px;
+    color: black;
+    border-radius: 40px;
+    text-align: center;
+    width:150px;
+    font-family: "Inter";
+    transition: background-color 0.15s;
+    font-size: 25px;
+}
+
+.detailed_title {
+    color: white;
+}
+
+.detailed_subtitle {
+    color: #b3b3b3;
+}
+
+.form_container {
+    width: 100%;
+    color: #fff;
+    margin: 0 auto;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    background-color: #d9d9d9;
+    border-radius: 3px;
+    height: 40px;
+    color: black;
+}
+
+.label{
+    font-size: 25px;
+    padding-top: 10px;
+    color: #fffbfb;
+}
+
+.text_area{
+    background-color: #d9d9d9;
+    border-radius: 3px;
+    height: 100px;
+    color: black;
+}
+
+.successMessage {
+    color:white;
+}

@@ -1,0 +1,86 @@
+.navbar {
+  /* background-color: #ebebeb; */
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 15px;
+}
+
+.navbarContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.logo img {
+  display: block;
+  width: auto;
+  height: 70px;
+  filter: invert(1);
+}
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex: 1;
+  text-align: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0px;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(207, 207, 207);
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+  font-family: "Inter", sans-serif;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.1s;
+  min-width: 130px;
+}
+
+.link:hover {
+  color: rgb(208, 208, 208);
+  filter: brightness(1.2);
+  background-color: #593c7a;
+}
+
+.active {
+  color: rgb(208, 208, 208);
+  background-color: #593c7a;
+}
+
+@media only screen and (max-width: 1280px) {
+  .navLinks {
+    gap: 30px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .navLinks {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .buttons {
+    display: none;
+  }
+}

@@ -1,0 +1,30 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  border-bottom: 8px solid;
+  border-left: 8px solid;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  flex: 1;
+}
+
+.icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 8px 0;
+  color: black;
+  font-size: 2.5em;
+}
+
+.description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 16px;
+}

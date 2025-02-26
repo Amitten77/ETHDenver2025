@@ -1,0 +1,19 @@
+.background_wrapper {
+  width: 100vw;
+  padding: 125px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .background_wrapper {
+    padding: 75px 0;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .background_wrapper {
+    padding: 150px 0;
+  }
+}
