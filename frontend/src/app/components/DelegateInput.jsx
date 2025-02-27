@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 
-const DelegateInput = ({operator}) => {
+const DelegateInput = ({ operator }) => {
   const [restakeAmount, setRestakeAmount] = useState(0);
   const [account, setAccount] = useState(null);
   const [contract, setContract] = useState(null);
@@ -155,13 +155,13 @@ const DelegateInput = ({operator}) => {
       operatorName: operator.operator,
       operatorAddress: operatorAddress,
       amountStaked: restakeAmount,
-      yieldValue: (Math.random() * (8 - 3) + 3).toFixed(2)
-    }
+      yieldValue: (Math.random() * (8 - 3) + 3).toFixed(2),
+    };
 
-    var mongoResponse = await fetch('http://localhost:3536/add_stake_data', {
-      method: 'POST',
+    var mongoResponse = await fetch("http://localhost:3536/add_stake_data", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(mongoData),
     }); 
@@ -195,10 +195,7 @@ const DelegateInput = ({operator}) => {
       />
 
       {/* Button */}
-      <button
-        onClick={handleRestake}
-        className="delegate_button"
-      >
+      <button onClick={handleRestake} className="delegate_button">
         Delegate
       </button>
     </div>

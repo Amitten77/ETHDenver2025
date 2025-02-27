@@ -5,9 +5,7 @@ import Swal from "sweetalert2";
 import ConfusionMatrix from "./ConfusionMatrix";
 
 const BenchmarkModal = ({ benchmark, onClose }) => {
-
-  const [diffBenchmark, setDiffBenchmark] = useState('');
-
+  const [diffBenchmark, setDiffBenchmark] = useState("");
 
   async function fetchTransaction(transactionHash) {
     const provider = new ethers.JsonRpcProvider(
@@ -18,15 +16,16 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
 
     const hexString = inputData.data;
 
-
-    const cleanedHex = hexString.startsWith("0x") ? hexString.slice(2) : hexString;
+    const cleanedHex = hexString.startsWith("0x")
+      ? hexString.slice(2)
+      : hexString;
 
     const decodedText = Buffer.from(cleanedHex, "hex").toString("utf8");
 
     const jsonMatch = decodedText.match(/\{.*\}/s); // Extracts content within {}
 
     if (!jsonMatch) {
-        throw new Error("No valid JSON found");
+      throw new Error("No valid JSON found");
     }
 
     const jsonString = jsonMatch[0];
@@ -34,19 +33,18 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
     return jsonString;
   }
 
-
   const handleAVS = async (avsModel, avsBenchMark) => {
     try {
-      var taskResponse = await fetch('http://localhost:4003/task/execute', {
-        method: 'POST',
+      var taskResponse = await fetch("http://localhost:4003/task/execute", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ model: avsModel, benchmark: avsBenchMark }),
       });
 
       if (!taskResponse.ok) {
-        throw new Error('Failed to execute task');
+        throw new Error("Failed to execute task");
       }
 
       var taskResult = await taskResponse.json();
@@ -59,45 +57,55 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
         confirmButtonText: 'Ok'
       });
 
-      const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+      const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
       await sleep(20000);
 
-      const transactionResponse = await fetch('http://localhost:1011/latest-tx');
+      const transactionResponse = await fetch(
+        "http://localhost:1011/latest-tx"
+      );
 
       const transactionData = await transactionResponse.json();
 
       console.log(transactionData);
 
       if (!transactionData.transactionHash) {
-        throw new Error('No transaction found');
+        throw new Error("No transaction found");
       }
       // Fetch the transaction hash
       const transactionHash = transactionData.transactionHash;
-      const inputData = await fetchTransaction(transactionHash)
-      
+      const inputData = await fetchTransaction(transactionHash);
+
+      console.log(inputData, "InputData");
+
       const jsonInputData = JSON.parse(inputData);
 
       console.log(jsonInputData);
 
       var mongoModel = jsonInputData.model;
 
-      console.log(mongoModel)
+      console.log(mongoModel);
 
       if (jsonInputData.model.includes("http")) {
         mongoModel = jsonInputData.model.split("/").pop().split(".")[1];
       }
 
-      var mongoResponse = await fetch('http://localhost:3536/add_model_data', {
-        method: 'POST',
+      var mongoResponse = await fetch("http://localhost:3536/add_model_data", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ model: mongoModel, benchmark: jsonInputData.benchmark, accuracy: jsonInputData.accuracy, confusion_matrix: jsonInputData.confusion_matrix, transactionHash: transactionHash }),
+        body: JSON.stringify({
+          model: mongoModel,
+          benchmark: jsonInputData.benchmark,
+          accuracy: jsonInputData.accuracy,
+          confusion_matrix: jsonInputData.confusion_matrix,
+          transactionHash: transactionHash,
+        }),
       });
 
       if (!mongoResponse.ok) {
-        console.error('Error:', mongoResponse);
-        throw new Error('Failed to execute task');
+        console.error("Error:", mongoResponse);
+        throw new Error("Failed to execute task");
       }
 
       Swal.fire({
@@ -109,20 +117,14 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
 
 
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error executing task');
+      console.error("Error:", error);
+      alert("Error executing task");
     }
-
-
-  }
-
-  const handleSubmit = async () => {
-
-    handleAVS(benchmark.model, diffBenchmark);
-
   };
 
-
+  const handleSubmit = async () => {
+    handleAVS(benchmark.model, diffBenchmark);
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -166,7 +168,10 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
           </select>
         </div>
 
-        <button className="w-64 p-2 bg-blue-500 text-white rounded" onClick={handleSubmit}>
+        <button
+          className="w-64 p-2 bg-blue-500 text-white rounded"
+          onClick={handleSubmit}
+        >
           Submit
         </button>
       </div>
