@@ -27,7 +27,8 @@ const OperatorModal = ({ operator }) => {
         <strong>Tot. Stakers</strong> {operator.stakers}
       </p>
 
-      <DelegateInput></DelegateInput>
+      <DelegateInput
+      operator={operator}></DelegateInput>
     </div>
   );
 };

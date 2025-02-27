@@ -37,7 +37,7 @@ const BenchmarksPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/modeldata");
+        const response = await fetch("http://localhost:3536/modeldata");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

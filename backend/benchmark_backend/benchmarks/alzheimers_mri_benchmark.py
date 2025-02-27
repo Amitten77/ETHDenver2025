@@ -27,7 +27,7 @@ def run_alzheimers_mri_benchmark(model: str) -> dict:
             print(f"Model already exists at {local_path}, skipping download.")
         ai_model = load_model(local_path)
     else:
-        ai_model = load_model(local_path)
+        ai_model = load_model("models/Alzheimers/" + model + ".keras")
 
     categories = ["MildDemented", "ModerateDemented", "NonDemented", "VeryMildDemented"]
 

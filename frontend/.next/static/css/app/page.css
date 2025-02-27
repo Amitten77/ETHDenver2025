@@ -2,7 +2,7 @@
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/components/NavBar.module.css ***!
   \********************************************************************************************************************************************************************************************************************************************************************************/
 .NavBar_navbar__xw51P {
-  /* background-color: #ebebeb; */
+  /* background-color: #000000; */
   height: 80px;
 
   display: flex;
@@ -55,21 +55,27 @@
   transition: color 0.3s ease, text-decoration 0.3s ease;
   transition: color 0.3s ease, text-decoration 0.3s ease, -webkit-text-decoration 0.3s ease;
   font-family: "Inter", sans-serif;
-  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-radius: 10px;
   transition: 0.1s;
   min-width: 130px;
 }
 
 .NavBar_link__w32Q0:hover {
-  color: rgb(208, 208, 208);
-  filter: brightness(1.2);
-  background-color: #593c7a;
+  /* color: rgb(208, 208, 208); */
+  filter: brightness(1.05);
+  background-color: rgb(179, 179, 179);
+  color: black;
 }
 
 .NavBar_active__Y8TTZ {
-  color: rgb(208, 208, 208);
-  background-color: #593c7a;
+  /* color: rgb(208, 208, 208); */
+  /* background-color: #593c7a; */
+  background-color: rgb(235, 233, 233) !important;
+  color: black;
 }
 
 @media only screen and (max-width: 1280px) {
