@@ -14,6 +14,8 @@ def get_benchmark():
     model = request.args.get('model')
     benchmark = request.args.get('benchmark')
 
+    print(model, benchmark)
+
     if benchmark not in benchmarks:
         return jsonify({"success": False, "error": "Benchmark not found"}), 404
     else:

@@ -22,30 +22,30 @@ export default function NavBar({ activeIdx = -1 }) {
         {/* Navigation Links Section */}
         <div className={styles.navLinks}>
           <Link
-            href="/benchmarks"
+            href="/leaderboards"
             className={`${styles.link} ${activeIdx == 0 ? styles.active : ""}`}
           >
-            Benchmarks
+            Leaderboard
           </Link>
           <Link
             href="/delegate"
             className={`${styles.link} ${activeIdx == 1 ? styles.active : ""}`}
           >
-            Be a Tester
+            Be a Delegator
           </Link>
           <Link
-            href="/history"
+            href="/test"
             className={`${styles.link} ${activeIdx == 2 ? styles.active : ""}`}
           >
-            History
+            Test a Model
           </Link>
         </div>
 
         {/* Buttons Section */}
         <div className={styles.buttons}>
-          <div className={"purple_wrapper"}>
-            <ConnectButton></ConnectButton>
-          </div>
+          {/* <div className={"purple_wrapper"}> */}
+          <ConnectButton></ConnectButton>
+          {/* </div> */}
           {/* <ButtonBlackTransparent path="/donate" className={styles.buttons}>
             Donate
           </ButtonBlackTransparent>

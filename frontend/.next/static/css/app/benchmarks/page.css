@@ -1,0 +1,173 @@
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/components/NavBar.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+.NavBar_navbar__xw51P {
+  /* background-color: #ebebeb; */
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 15px;
+}
+
+.NavBar_navbarContainer__MJsz_ {
+  display: flex;
+  align-items: center;
+}
+
+.NavBar_logo__YLm5G {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.NavBar_logo__YLm5G img {
+  display: block;
+  width: auto;
+  height: 70px;
+  filter: invert(1);
+}
+
+.NavBar_navLinks__vyFsH {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex: 1 1;
+  text-align: center;
+  align-items: center;
+}
+
+.NavBar_buttons__kvCOs {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0px;
+  align-items: center;
+}
+
+.NavBar_link__w32Q0 {
+  text-decoration: none;
+  color: rgb(207, 207, 207);
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color 0.3s ease, -webkit-text-decoration 0.3s ease;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+  transition: color 0.3s ease, text-decoration 0.3s ease, -webkit-text-decoration 0.3s ease;
+  font-family: "Inter", sans-serif;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.1s;
+  min-width: 130px;
+}
+
+.NavBar_link__w32Q0:hover {
+  color: rgb(208, 208, 208);
+  filter: brightness(1.2);
+  background-color: #593c7a;
+}
+
+.NavBar_active__Y8TTZ {
+  color: rgb(208, 208, 208);
+  background-color: #593c7a;
+}
+
+@media only screen and (max-width: 1280px) {
+  .NavBar_navLinks__vyFsH {
+    gap: 30px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .NavBar_navLinks__vyFsH {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .NavBar_buttons__kvCOs {
+    display: none;
+  }
+}
+
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/components/reusables/buttons/ButtonBlackTransparent.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ButtonBlackTransparent_button__xAiis {
+  background-color: transparent;
+  border: 2px solid black;
+  padding: 8px 18px;
+  border-radius: 40px;
+  color: black;
+  text-align: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: "Inter";
+  transition: background-color 0.15s;
+  transition: color 0.15s;
+}
+
+.ButtonBlackTransparent_button__xAiis:hover {
+  background-color: black;
+  color: white;
+}
+
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/components/reusables/buttons/ButtonAnyColorFilled.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ButtonAnyColorFilled_button__kvMgU{
+    border: 2px;
+    padding: 8px 18px;
+    border-radius: 40px;
+    color: white;
+    text-align: center;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-family: "Inter";
+    transition: background-color .15s;
+    transition: color .15s;
+}
+
+.ButtonAnyColorFilled_button__kvMgU:hover{
+    filter: brightness(0.9);
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/components/reusables/buttons/ButtonWhiteFilled.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ButtonWhiteFilled_button__iCjXY{
+    background-color: white;
+    border: 2px solid white;
+    padding: 8px 18px;
+    border-radius: 40px;
+    color: black;
+    text-align: center;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-family: "Inter";
+    transition: background-color 0.15s;
+}
+.ButtonWhiteFilled_button__iCjXY:hover{
+    filter: brightness(0.9);
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/components/reusables/buttons/ButtonWhiteTransparent.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ButtonWhiteTransparent_button__9cGhg {
+  background-color: transparent;
+  border: 2px solid white;
+  padding: 8px 18px;
+  border-radius: 40px;
+  color: white;
+  text-align: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: "Inter";
+  transition: background-color 0.15s;
+  transition: color 0.15s;
+}
+
+.ButtonWhiteTransparent_button__9cGhg:hover {
+  background-color: white;
+  color: black;
+}
+
