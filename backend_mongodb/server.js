@@ -20,6 +20,21 @@ connectToDb((err) => {
   }
 });
 
+// Fetches all the model data for the ModelData database
+app.get("/modeldata", async (req, res) => {
+  console.log("Fetching model data");
+  try {
+    const collection = db.collection("ModelData");
+    // Find all items, sort them by createdAt in descending order (-1), and limit to 10
+    const items = await collection.find({}).toArray();
+
+    res.status(200).json(items);
+  } catch (err) {
+    console.error("Error fetching items:", err);
+    res.status(500).send("Error fetching recent items");
+  }
+});
+
 app.get("/user/:address", async (req, res) => {
   try {
     let address = req.params.address;
