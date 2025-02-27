@@ -21,6 +21,7 @@ services:
         "--internal-tasks",
         "--sync-interval",
         "5400000",
+        "| tee aggregator.log"
       ]
     environment:
       - PRIVATE_KEY=${PRIVATE_KEY_AGGREGATOR}
@@ -30,6 +31,8 @@ services:
     networks:
       p2p:
         ipv4_address: 10.8.0.69
+    volumes:
+      - ./log:/app/log
   attester-1:
     <<: *othentic-cli
     command:

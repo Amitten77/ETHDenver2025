@@ -1,17 +1,19 @@
 axios = require("axios");
 
-async function getAccuracy(query) {
+async function getAccuracy(model, benchmark) {
   try {
-    const response = await axios.get(
-      `http://host.docker.internal:5179/get_benchmark`,
-      {
-        params: { query },
-      }
-    );
+    const response = await axios.get("http://host.docker.internal:5179/get_benchmark", {
+      params: { model, benchmark },
+    });
+
+    if (response.status !== 200) {
+      throw new Error("Failed to retrieve accuracy");
+    }
 
     return {
       accuracy: response.data.accuracy,
-      id: Math.random(),
+      confusion_matrix: response.data.confusion_matrix,
+      id: Math.random(), // Assign a random ID
     };
   } catch (error) {
     console.error("Error fetching benchmark data:", error);

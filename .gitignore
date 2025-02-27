@@ -1,2 +1,7 @@
 **/.env*
 **/.ipynb
+**/node_modules/
+**/__pycache__/
+**/log/
+**/datasets/
+**/models/
