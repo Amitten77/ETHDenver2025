@@ -1,6 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/leaderboards/page": "app/leaderboards/page.js",
-  "/test/page": "app/test/page.js",
-  "/delegate/page": "app/delegate/page.js"
-}
