@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { ethers } from "ethers";
+import Swal from "sweetalert2";
+import ConfusionMatrix from "./ConfusionMatrix";
 
 const BenchmarkModal = ({ benchmark, onClose }) => {
 
@@ -48,7 +50,14 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
       }
 
       var taskResult = await taskResponse.json();
-      alert(`Execution Result: ${JSON.stringify(taskResult)}`);
+
+      
+      Swal.fire({
+        title: 'Task Submitted to AVS',
+        text: `Preliminary result: \n Accuracy is at ${(JSON.parse(taskResult["data"]["data"])["accuracy"] * 100).toFixed(2)}%`,
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      });
 
       const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
       await sleep(20000);
@@ -91,9 +100,12 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
         throw new Error('Failed to execute task');
       }
 
-      var mongoResult = await mongoResponse.json();
-
-      alert(`Result: ${JSON.stringify(mongoResult)}`);
+      Swal.fire({
+        title: 'Model Performance Validated!',
+        text: `Check out the leaderboard to see how ${avsModel} has performed on ${avsBenchMark}`,
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
 
 
     } catch (error) {
@@ -134,9 +146,9 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
         <p>
           <strong>Stakers:</strong> {benchmark.count}
         </p>
-        <p>
-          <strong>Yield:</strong> ${2730}
-        </p>
+        <div>
+          <ConfusionMatrix matrix={benchmark.confusion_matrix} benchmark={benchmark.benchmark}/>
+        </div>
         <p>
           <strong>Last Tested:</strong> {benchmark.entry_time}
         </p>

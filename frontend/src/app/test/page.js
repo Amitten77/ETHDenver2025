@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 
 import { Tourney } from "next/font/google";
-import { ethers } from "ethers";
+import { ethers, BrowserProvider } from "ethers";
+import Swal from "sweetalert2";
 
 const tourney = Tourney({ subsets: ["latin"] });
 
@@ -47,6 +48,27 @@ const TestPage = () => {
 
   const handleAVS = async (avsModel, avsBenchMark) => {
     try {
+      if (!window.ethereum) {
+        throw new Error('MetaMask is not installed. Please install it to continue.');
+      }
+
+      console.log("HEY")
+  
+      // Request account access
+      const provider = new BrowserProvider(window.ethereum);
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const signer = await provider.getSigner();
+      const userAddress = await signer.getAddress();
+  
+      // Generate a message to sign
+      const message = `Authorize AVS task execution for model ${avsModel} on benchmark ${avsBenchMark}. User: ${userAddress}`;
+      const signature = await signer.signMessage(message);
+  
+      console.log("User Address:", userAddress);
+      console.log("Signature:", signature);
+  
+
+
       var taskResponse = await fetch('http://localhost:4003/task/execute', {
         method: 'POST',
         headers: {
@@ -60,7 +82,13 @@ const TestPage = () => {
       }
 
       var taskResult = await taskResponse.json();
-      alert(`Execution Result: ${JSON.stringify(taskResult)}`);
+      
+      Swal.fire({
+        title: 'Task Submitted to AVS',
+        text: `Preliminary result: \n Accuracy is at ${(JSON.parse(taskResult["data"]["data"])["accuracy"] * 100).toFixed(2)}%`,
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      });
 
       const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
       await sleep(20000);
@@ -103,9 +131,12 @@ const TestPage = () => {
         throw new Error('Failed to execute task');
       }
 
-      var mongoResult = await mongoResponse.json();
-
-      alert(`Result: ${JSON.stringify(mongoResult)}`);
+      Swal.fire({
+        title: 'Model Performance Validated!',
+        text: `Check out the leaderboard to see how ${modelName} has performed on ${avsBenchMark}`,
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
 
 
     } catch (error) {
@@ -138,7 +169,6 @@ const TestPage = () => {
         throw new Error("Upload failed!");
       }
 
-      alert("File uploaded successfully!");
 
       const objectUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${fileName}`;
 

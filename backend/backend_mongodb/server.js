@@ -65,16 +65,9 @@ app.post("/add_stake_data", async (req, res) => {
     console.log("Received Stake Data Request:", req.body);
     const { stakerAddress, operatorName, operatorAddress, amountStaked, yieldValue } = req.body;
 
+    console.log(typeof stakerAddress, typeof operatorName, typeof operatorAddress, typeof amountStaked, typeof yieldValue);
+
     // Validate request body
-    if (
-      typeof stakerAddress !== "string" ||
-      typeof operatorName !== "string" ||
-      typeof operatorAddress !== "string" ||
-      typeof amountStaked !== "number" ||
-      typeof yieldValue !== "number"
-    ) {
-      return res.status(400).json({ error: "Invalid data format" });
-    }
 
     // Create the data object with entry_time as the current timestamp
     const stakeEntry = {
@@ -108,6 +101,29 @@ app.get("/modeldata", async (req, res) => {
   } catch (err) {
     console.error("Error fetching items:", err);
     res.status(500).send("Error fetching recent items");
+  }
+});
+
+app.get("/stake_data/:stakerAddress", async (req, res) => {
+  try {
+    const { stakerAddress } = req.params;
+
+    // Validate the input
+    if (typeof stakerAddress !== "string" || !stakerAddress.startsWith("0x")) {
+      return res.status(400).json({ error: "Invalid stakerAddress format" });
+    }
+
+    // Search for the entry in the StakeData collection
+    const stakeEntry = await db.collection("StakeData").findOne({ stakerAddress });
+
+    if (!stakeEntry) {
+      return res.status(404).json({ error: "Stake data not found" });
+    }
+
+    res.status(200).json(stakeEntry);
+  } catch (error) {
+    console.error("Error fetching stake data:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

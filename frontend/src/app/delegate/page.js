@@ -8,6 +8,8 @@ import SortArrow from "../components/SortArrow";
 import Operator from "../components/Operator";
 import OperatorModal from "../components/OperatorModal";
 
+import { ethers } from "ethers";
+
 const tourney = Tourney({ subsets: ["latin"] });
 
 const DelegatePage = () => {
@@ -16,6 +18,52 @@ const DelegatePage = () => {
     { operator: "Shuffer", eth_staked: 217, stakers: 117, apr: "1.64%" },
     { operator: "Crious", eth_staked: 674, stakers: 1732, apr: "1.79%" },
   ]);
+
+  const [stakerAddress, setStakerAddress] = useState("");
+
+  const connectWallet = async () => {
+    if (!window.ethereum) {
+      alert("Please install MetaMask");
+      return;
+    }
+
+    try {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      setStakerAddress(await signer.getAddress());
+    } catch (error) {
+      console.error("Error connecting wallet:", error);
+    }
+  };
+
+  useEffect(() => {
+    connectWallet();
+  }, []);
+
+
+  const [stakerEntry, setStakerEntry] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStakerData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3536/stake_data/${stakerAddress}`);
+        if (response.ok) {
+          const data = await response.json();
+          setStakerEntry(data);
+        } else {
+          setStakerEntry(null);
+        }
+      } catch (error) {
+        console.error("Error fetching staker data:", error);
+        setStakerEntry(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStakerData();
+  }, [stakerAddress]);
 
   const [activeCategory, setActiveCategory] = useState(null);
   const [currDir, setCurrDir] = useState(0);
@@ -73,7 +121,7 @@ const DelegatePage = () => {
       <div className={"page_start_spacer"}></div>
       <div className={"header_content content_box"}>
         <h2 className={tourney.className}>Restake your ETH</h2>
-        <h3>Contibute to an operator to start earning yield.</h3>
+        <h3>Contribute to an operator to start earning yield.</h3>
       </div>
 
       <div className={"content_box operator_main"}>
@@ -126,48 +174,52 @@ const DelegatePage = () => {
           </div>
           {operatorData && (
             <div className={"leaderboard_content"}>
-              {operatorData.map((d, i) => {
-                console.log(d);
-                d.id = i;
-                return (
-                  <Operator
-                    imageSrc={`model${(i % 6) + 1}.png`}
-                    operator={d.operator}
-                    eth_staked={d.eth_staked}
-                    stakers={d.stakers}
-                    apr={d.apr}
-                    key={i}
-                    onClick={() => setSelectedOperator(d)}
-                    isActive={selectedOperator === d}
-                  ></Operator>
-                );
-              })}
+              {operatorData.map((d, i) => (
+                <Operator
+                  imageSrc={`model${(i % 6) + 1}.png`}
+                  operator={d.operator}
+                  eth_staked={d.eth_staked}
+                  stakers={d.stakers}
+                  apr={d.apr}
+                  key={i}
+                  onClick={() => setSelectedOperator(d)}
+                  isActive={selectedOperator === d}
+                />
+              ))}
             </div>
           )}
         </div>
+
         <div className={"delegate_right_panels"}>
-          <div className="delegate_current">
-            <div className={"delegate_current_header"}>
-              <h3>Claimable Rewards</h3>
-              <h2>{"<"}0.0000 ETH</h2>
-              <div className={"delegate_current_options"}>
-                <div className={"delegate_current_operator"}>
-                  <h3>Current Operator:</h3>
-                  <div>
-                    <img src={`model${"1"}.png`} />
-                    <h2>ZonixTesting</h2>
+          {loading ? (
+            <p>Loading...</p>
+          ) : stakerEntry ? (
+            <div className="delegate_current">
+              <div className={"delegate_current_header"}>
+                <h3>Claimable Rewards</h3>
+                <h2>{stakerEntry.yield} ETH</h2>
+                <div className={"delegate_current_options"}>
+                  <div className={"delegate_current_operator"}>
+                    <h3>Current Operator:</h3>
+                    <div>
+                      <img src={`model1.png`} alt="Operator" />
+                      <h2>{stakerEntry.operatorName}</h2>
+                    </div>
                   </div>
-                </div>
-                <div className={"delegate_current_button"}>
-                  {/* Button */}
-                  <button onClick={() => {}} className="delegate_button">
-                    Undelegate
-                  </button>
+                  <div className={"delegate_current_button"}>
+                    <button className="delegate_button">Undelegate</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* Modal - Renders only if a benchmark is selected */}
+          ) : (
+            <div className="delegate_current">
+              <div className={"delegate_current_header"}>
+                <h3>You haven't staked to anyone yet</h3>
+              </div>
+            </div>
+          )}
+
           {selectedOperator && (
             <OperatorModal
               operator={operatorData.find((d) => d === selectedOperator)}
@@ -184,5 +236,6 @@ const DelegatePage = () => {
     </div>
   );
 };
+
 
 export default DelegatePage;

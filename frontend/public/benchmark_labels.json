@@ -1,0 +1,17 @@
+{
+    "fetal_health": [
+        "Normal",
+        "Suspect",
+        "Pathological"
+    ],
+    "alzheimer": [
+        "NonDemented",
+        "VeryMildDemented",
+        "MildDemented",
+        "ModerateDemented"
+    ],
+    "stroke_risk": [
+        "Low",
+        "High"
+    ]
+}

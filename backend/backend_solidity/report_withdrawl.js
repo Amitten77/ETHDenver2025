@@ -31,7 +31,7 @@ const vikramContract = new ethers.Contract(vikramContractAddress, contractABI, p
 const keshavContract = new ethers.Contract(keshavContractAddress, contractABI, provider);
 
 
-async function stakeAndRestake(address, nodeId, operator) {
+async function stakeAndRestake(address, nodeId, operator, amount) {
 
   // check if node is ready
   const url = `https://api-test-holesky.p2p.org/api/v1/eth/staking/direct/nodes-request/status/${nodeId}`;
@@ -58,7 +58,8 @@ async function stakeAndRestake(address, nodeId, operator) {
         {
           "pubkey": "0xaed7226d86d884dd44bc45c2b57f7634e72abf247713163388b1c34d89a1322d7228ca023dbaf2465b822e35ba00da13",
           "signature": "0x91b710f0e3affe704e76ada81b095afbedf4b760f3160760e8fa0298cc4858e0f325c2652dc698ec63c59db65562551114ab7fcafe1d675eaaf186fa7758800f0157bd0b51cd3a131fac562d6933658ddbf182aab8d20a9483b1392085e54cf5",
-          "depositDataRoot": "0xd0d00dce54b4ec8a7803783fc786a859459ead1d35b856c525cb289aba4b0f89"
+          "depositDataRoot": "0xd0d00dce54b4ec8a7803783fc786a859459ead1d35b856c525cb289aba4b0f89",
+          "amount": amount * 10**9 // convert eth to gwei
         }
       ]
     }
@@ -107,13 +108,11 @@ async function stakeAndRestake(address, nodeId, operator) {
 
 }
 
-
-
 dylanContract.on("AutoWithdrawTriggered", (amount, to) => {
     console.log(`Auto-withdrawal of ${ethers.formatEther(amount)} ETH sent to Dylan's Staker: ${to}`);
 
     // Stake and Restake
-    stakeAndRestake(dylanContractAddress, dylanNodeId, dylanOperator);
+    stakeAndRestake(dylanContractAddress, dylanNodeId, dylanOperator, amount);
 
 });
 
@@ -122,7 +121,7 @@ vikramContract.on("AutoWithdrawTriggered", (amount, to) => {
   console.log(`Auto-withdrawal of ${ethers.formatEther(amount)} ETH sent to Vikram's Staker: ${to}`);
 
     // Stake and Restake
-    stakeAndRestake(vikramContractAddress, vikramNodeId, vikramOperator);
+    stakeAndRestake(vikramContractAddress, vikramNodeId, vikramOperator, amount);
 });
 
 // Listen for the AutoWithdrawTriggered event
@@ -130,5 +129,5 @@ keshavContract.on("AutoWithdrawTriggered", (amount, to) => {
   console.log(`Auto-withdrawal of ${ethers.formatEther(amount)} ETH sent to Keshav's Staker: ${to}`);
 
   // Stake and Restake
-  stakeAndRestake(keshavContractAddress, keshavNodeId, keshavOperator);
+  stakeAndRestake(keshavContractAddress, keshavNodeId, keshavOperator, amount);
 });
