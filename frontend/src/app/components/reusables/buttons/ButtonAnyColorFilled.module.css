@@ -1,0 +1,15 @@
+.button{
+    border: 2px;
+    padding: 8px 18px;
+    border-radius: 40px;
+    color: white;
+    text-align: center;
+    width: fit-content;
+    font-family: "Inter";
+    transition: background-color .15s;
+    transition: color .15s;
+}
+
+.button:hover{
+    filter: brightness(0.9);
+}

@@ -1,0 +1,17 @@
+.button {
+  background-color: transparent;
+  border: 2px solid black;
+  padding: 8px 18px;
+  border-radius: 40px;
+  color: black;
+  text-align: center;
+  width: fit-content;
+  font-family: "Inter";
+  transition: background-color 0.15s;
+  transition: color 0.15s;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
+}

@@ -1,0 +1,12 @@
+.buttonContainer {
+  padding-top: 25px; /* Space around the button */
+  display: flex;
+}
+
+.detailed_title {
+  margin-bottom: 20px;
+}
+
+.detailed_subtitle {
+  margin-bottom: 10px;
+}
