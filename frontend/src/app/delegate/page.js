@@ -14,9 +14,15 @@ const tourney = Tourney({ subsets: ["latin"] });
 
 const DelegatePage = () => {
   const [operatorData, setOperatorData] = useState([
-    { operator: "ZonixTesting", eth_staked: 47, stakers: 37, apr: "1.73%" },
-    { operator: "Shuffer", eth_staked: 217, stakers: 117, apr: "1.64%" },
-    { operator: "Crious", eth_staked: 674, stakers: 1732, apr: "1.79%" },
+    {
+      operator: "ZonixTesting",
+      eth_staked: 47,
+      stakers: 37,
+      apr: "1.73%",
+      id: 1,
+    },
+    { operator: "Shuffer", eth_staked: 217, stakers: 117, apr: "1.64%", id: 2 },
+    { operator: "Crious", eth_staked: 674, stakers: 1732, apr: "1.79%", id: 3 },
   ]);
 
   const [stakerAddress, setStakerAddress] = useState("");
@@ -40,14 +46,15 @@ const DelegatePage = () => {
     connectWallet();
   }, []);
 
-
   const [stakerEntry, setStakerEntry] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStakerData = async () => {
       try {
-        const response = await fetch(`http://localhost:3536/stake_data/${stakerAddress}`);
+        const response = await fetch(
+          `http://localhost:3536/stake_data/${stakerAddress}`
+        );
         if (response.ok) {
           const data = await response.json();
           setStakerEntry(data);
@@ -74,14 +81,14 @@ const DelegatePage = () => {
     ["operator", (a, b) => a.operator.localeCompare(b.operator)],
     ["ethstaked", (a, b) => b.eth_staked - a.eth_staked],
     ["stakers", (a, b) => b.stakers - a.stakers],
-    ["apr", (a, b) => a.apr.localeCompare(b.apr)],
+    ["apr", (a, b) => b.apr.localeCompare(a.apr)],
   ]);
 
   const sortingMapAscending = new Map([
     ["operator", (a, b) => b.operator.localeCompare(a.operator)],
     ["ethstaked", (a, b) => a.eth_staked - b.eth_staked],
     ["stakers", (a, b) => a.stakers - b.stakers],
-    ["apr", (a, b) => b.apr.localeCompare(a.apr)],
+    ["apr", (a, b) => a.apr.localeCompare(b.apr)],
   ]);
 
   function handleSortChange(dir, category) {
@@ -176,7 +183,7 @@ const DelegatePage = () => {
             <div className={"leaderboard_content"}>
               {operatorData.map((d, i) => (
                 <Operator
-                  imageSrc={`model${(i % 6) + 1}.png`}
+                  imageSrc={`operator${d.id}.png`}
                   operator={d.operator}
                   eth_staked={d.eth_staked}
                   stakers={d.stakers}
@@ -202,7 +209,16 @@ const DelegatePage = () => {
                   <div className={"delegate_current_operator"}>
                     <h3>Current Operator:</h3>
                     <div>
-                      <img src={`model1.png`} alt="Operator" />
+                      <img
+                        src={
+                          stakerEntry.operatorName == "ZonixTesting"
+                            ? "operator1.png"
+                            : stakerEntry.operatorName == "Shuffer"
+                            ? "operator2.png"
+                            : "operator3.png"
+                        }
+                        alt="Operator"
+                      />
                       <h2>{stakerEntry.operatorName}</h2>
                     </div>
                   </div>
@@ -236,6 +252,5 @@ const DelegatePage = () => {
     </div>
   );
 };
-
 
 export default DelegatePage;

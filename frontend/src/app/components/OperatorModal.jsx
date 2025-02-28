@@ -11,7 +11,7 @@ const OperatorModal = ({ operator }) => {
     >
       <div className="modal-header">
         <img
-          src={`model${(operator.id % 6) + 1}.png`}
+          src={`operator${operator.id % 6}.png`}
           alt={operator.operator}
           className="modal-image"
         />

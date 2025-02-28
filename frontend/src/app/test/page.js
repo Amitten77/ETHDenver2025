@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 import { Tourney } from "next/font/google";
 import { ethers, BrowserProvider } from "ethers";
 import Swal from "sweetalert2";
+import ThreeHeart from "../components/ThreeHeart";
 
 const tourney = Tourney({ subsets: ["latin"] });
 
@@ -15,6 +16,7 @@ const TestPage = () => {
   const [modelType, setModelType] = useState("");
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [testCount, setTestCount] = useState(3);
 
   const bucketName = "eigenhealth";
   const region = "us-east-1";
@@ -48,28 +50,28 @@ const TestPage = () => {
   const handleAVS = async (avsModel, avsBenchMark) => {
     try {
       if (!window.ethereum) {
-        throw new Error('MetaMask is not installed. Please install it to continue.');
+        throw new Error(
+          "MetaMask is not installed. Please install it to continue."
+        );
       }
 
-      console.log("HEY")
-  
+      console.log("HEY");
+
       // Request account access
       const provider = new BrowserProvider(window.ethereum);
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      await window.ethereum.request({ method: "eth_requestAccounts" });
       const signer = await provider.getSigner();
       const userAddress = await signer.getAddress();
-  
+
       // Generate a message to sign
       const message = `Authorize AVS task execution for model ${avsModel} on benchmark ${avsBenchMark}. User: ${userAddress}`;
       const signature = await signer.signMessage(message);
-  
+
       console.log("User Address:", userAddress);
       console.log("Signature:", signature);
-  
 
-
-      var taskResponse = await fetch('http://localhost:4003/task/execute', {
-        method: 'POST',
+      var taskResponse = await fetch("http://localhost:4003/task/execute", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -81,12 +83,14 @@ const TestPage = () => {
       }
 
       var taskResult = await taskResponse.json();
-      
+
       Swal.fire({
-        title: 'Task Submitted to AVS',
-        text: `Preliminary result: \n Accuracy is at ${(JSON.parse(taskResult["data"]["data"])["accuracy"] * 100).toFixed(2)}%`,
-        icon: 'success',
-        confirmButtonText: 'Ok'
+        title: "Task Submitted to AVS",
+        text: `Preliminary result: \n Accuracy is at ${(
+          JSON.parse(taskResult["data"]["data"])["accuracy"] * 100
+        ).toFixed(2)}%`,
+        icon: "success",
+        confirmButtonText: "Ok",
       });
 
       const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -145,13 +149,11 @@ const TestPage = () => {
       }
 
       Swal.fire({
-        title: 'Model Performance Validated!',
+        title: "Model Performance Validated!",
         text: `Check out the leaderboard to see how ${modelName} has performed on ${avsBenchMark}`,
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
-
-
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
     } catch (error) {
       console.error("Error:", error);
       alert("Error executing task");
@@ -166,6 +168,7 @@ const TestPage = () => {
     setUploading(true);
     const fileName = `${modelType}.${modelName}.${file.name}`;
     const uploadUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${fileName}`;
+    setTestCount(testCount - 1);
 
     try {
       const response = await fetch(uploadUrl, {
@@ -177,7 +180,6 @@ const TestPage = () => {
       if (!response.ok) {
         throw new Error("Upload failed!");
       }
-
 
       const objectUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${fileName}`;
 
@@ -200,56 +202,73 @@ const TestPage = () => {
       </div>
       <div className={"model content_box"}>
         <div className={"add_model"}>
-          <div className="w-64">
-            <select
-              className="w-full p-2 border rounded"
-              value={benchmark}
-              onChange={(e) => setBenchmark(e.target.value)}
-            >
-              <option value="">Select Benchmark</option>
-              <option value="fetal_health">Fetal Health Benchmark</option>
-              <option value="alzheimers">Alzheimer's MRI Benchmark</option>
-              <option value="stroke_risk">Stroke Risk Benchmark</option>
-            </select>
-          </div>
+          <h3 className={tourney.className}>Upload model</h3>
+          <p>Model's will be evaluated by our operators</p>
 
-          <div className="mt-8 w-64 p-4 border rounded shadow">
-            <h3 className="text-lg font-bold mb-2">Upload File</h3>
+          <hr className="divider" />
 
-            <input
-              type="text"
-              placeholder="Enter Name"
-              value={modelName}
-              onChange={(e) => setModelName(e.target.value)}
-              className="w-full p-2 border rounded mb-2"
-            />
+          <h4 className={tourney.className}>Choose model file</h4>
 
-            <input
-              type="file"
-              onChange={handleFileChange}
-              className="w-full p-2 border rounded mb-2"
-            />
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="w-full p-2 border rounded mb-2"
+          />
 
-            <select
-              className="w-full p-2 border rounded mb-2"
-              value={modelType}
-              onChange={(e) => setModelType(e.target.value)}
-            >
-              <option value="">Select Model Type</option>
-              <option value="keras">Keras</option>
-              <option value="sklearn">Sklearn NN</option>
-              <option value="llm">LLM</option>
-            </select>
+          <h4 className={tourney.className}>
+            Enter model name and select type
+          </h4>
 
-            <button
-              className="w-full p-2 bg-green-500 text-white rounded"
-              onClick={handleFileSubmit}
-            >
+          <input
+            type="text"
+            placeholder="Enter Name"
+            value={modelName ? modelName : ""}
+            onChange={(e) => setModelName(e.target.value)}
+            className="w-full p-2 border rounded mb-2"
+          />
+
+          <select
+            className="w-full p-2 border rounded mb-2 model_type"
+            value={modelType}
+            onChange={(e) => setModelType(e.target.value)}
+          >
+            <option value="">Select Model Type</option>
+            <option value="keras">Keras</option>
+            <option value="sklearn">Sklearn NN</option>
+            <option value="llm">LLM</option>
+          </select>
+
+          <hr className="divider" />
+
+          <h4 className={tourney.className}>Select benchmark to use</h4>
+
+          <select
+            className="model_type"
+            value={benchmark}
+            onChange={(e) => setBenchmark(e.target.value)}
+          >
+            <option value="">Select Benchmark</option>
+            <option value="fetal_health">Fetal Health Benchmark</option>
+            <option value="alzheimers">Alzheimer's MRI Benchmark</option>
+            <option value="stroke_risk">Stroke Risk Benchmark</option>
+          </select>
+
+          <hr className="divider" />
+
+          <div>
+            <button className="delegate_button" onClick={handleFileSubmit}>
               Upload File
             </button>
+            <p>{testCount} tests left today</p>
           </div>
         </div>
-        <div className={"model_info"}></div>
+        <div className={"model_info"}>
+          <ThreeHeart></ThreeHeart>
+        </div>
+      </div>
+      <div className={"footer content_box"}>
+        <h3>Made by Dylan Subramanian and Amit Krishnaiyer</h3>
+        <h3>Built with Othentic and P2P for EigenGames 2025</h3>
       </div>
     </div>
   );

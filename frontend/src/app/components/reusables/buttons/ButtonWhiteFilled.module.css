@@ -1,14 +1,29 @@
-.button{
-    background-color: white;
-    border: 2px solid white;
-    padding: 8px 18px;
-    border-radius: 40px;
-    color: black;
-    text-align: center;
-    width: fit-content;
-    font-family: "Inter";
-    transition: background-color 0.15s;
+.button {
+  text-decoration: none;
+  background-color: white;
+  border: 2px solid white;
+  padding: 10px 18px;
+  border-radius: 40px;
+  color: black;
+  text-align: center;
+  width: fit-content;
+  font-family: "Inter";
+  transition: background-color 0.15s;
+  transition: color 0.15s;
+  margin-right: 15px;
 }
-.button:hover{
-    filter: brightness(0.9);
+
+.button p {
+  margin: 0;
+  color: black;
+}
+
+.button:hover {
+  background-color: white;
+  filter: brightness(0.9);
+  color: black !important;
+}
+
+.button:hover p {
+  color: black !important;
 }
