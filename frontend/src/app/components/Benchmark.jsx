@@ -6,8 +6,8 @@ const Benchmark = ({
   benchmark,
   accuracy,
   stakersNum,
-  yields,
   testDate,
+  testTime,
   onClick,
 }) => {
   return (
@@ -17,8 +17,8 @@ const Benchmark = ({
       <h3 className={"model_text benchmark_text"}>{benchmark}</h3>
       <h3 className={"benchmark_text"}>{`${accuracy}%`}</h3>
       <h3 className={"benchmark_text"}>{stakersNum}</h3>
-      <h3 className={"benchmark_text"}>{`$${yields}`}</h3>
       <h3 className={"benchmark_text"}>{testDate}</h3>
+      <h3 className={"benchmark_text"}>{testTime}</h3>
     </div>
   );
 };

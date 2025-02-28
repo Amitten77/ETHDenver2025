@@ -4,6 +4,10 @@ import { ethers } from "ethers";
 import Swal from "sweetalert2";
 import ConfusionMatrix from "./ConfusionMatrix";
 
+import { Tourney } from "next/font/google";
+
+const tourney = Tourney({ subsets: ["latin"] });
+
 const BenchmarkModal = ({ benchmark, onClose }) => {
   const [diffBenchmark, setDiffBenchmark] = useState("");
 
@@ -49,12 +53,13 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
 
       var taskResult = await taskResponse.json();
 
-      
       Swal.fire({
-        title: 'Task Submitted to AVS',
-        text: `Preliminary result: \n Accuracy is at ${(JSON.parse(taskResult["data"]["data"])["accuracy"] * 100).toFixed(2)}%`,
-        icon: 'success',
-        confirmButtonText: 'Ok'
+        title: "Task Submitted to AVS",
+        text: `Preliminary result: \n Accuracy is at ${(
+          JSON.parse(taskResult["data"]["data"])["accuracy"] * 100
+        ).toFixed(2)}%`,
+        icon: "success",
+        confirmButtonText: "Ok",
       });
 
       const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -109,13 +114,11 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
       }
 
       Swal.fire({
-        title: 'Model Performance Validated!',
+        title: "Model Performance Validated!",
         text: `Check out the leaderboard to see how ${avsModel} has performed on ${avsBenchMark}`,
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
-
-
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
     } catch (error) {
       console.error("Error:", error);
       alert("Error executing task");
@@ -126,38 +129,37 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
     handleAVS(benchmark.model, diffBenchmark);
   };
 
+  console.log(benchmark.id);
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <img
-            src="spider_logo.png"
+            src={`model${((benchmark.id - 1) % 6) + 1}.png`}
             alt={benchmark.model}
             className="modal-image"
           />
           <div>
-            <h2>{benchmark.model}</h2>
-            <h3>
+            <h2 className={tourney.className}>{benchmark.model}</h2>
+            <h3 className={tourney.className}>
               Testing <b>{benchmark.benchmark}</b>
             </h3>
           </div>
         </div>
         <p>
-          <strong>Accuracy:</strong> {benchmark.accuracy}%
+          <strong>Model Accuracy:</strong> {benchmark.accuracy}%
         </p>
-        <p>
-          <strong>Stakers:</strong> {benchmark.count}
-        </p>
-        <div>
-          <ConfusionMatrix matrix={benchmark.confusion_matrix} benchmark={benchmark.benchmark}/>
+        <div className="confusion_matrix">
+          <ConfusionMatrix
+            matrix={benchmark.confusion_matrix}
+            benchmark={benchmark.benchmark}
+          />
         </div>
-        <p>
-          <strong>Last Tested:</strong> {benchmark.entry_time}
-        </p>
 
-        <div className="w-64">
+        <div className="benchmark_modal_input">
           <select
-            className="w-full p-2 border rounded"
+            className=""
             value={diffBenchmark}
             onChange={(e) => setDiffBenchmark(e.target.value)}
           >
@@ -166,14 +168,11 @@ const BenchmarkModal = ({ benchmark, onClose }) => {
             <option value="alzheimers">Alzheimer's MRI Benchmark</option>
             <option value="stroke_risk">Stroke Risk Benchmark</option>
           </select>
-        </div>
 
-        <button
-          className="w-64 p-2 bg-blue-500 text-white rounded"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
+          <button className="delegate_button" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   );

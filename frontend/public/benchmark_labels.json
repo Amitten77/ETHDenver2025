@@ -1,17 +1,5 @@
 {
-    "fetal_health": [
-        "Normal",
-        "Suspect",
-        "Pathological"
-    ],
-    "alzheimers": [
-        "NonDemented",
-        "VeryMildDemented",
-        "MildDemented",
-        "ModerateDemented"
-    ],
-    "stroke_risk": [
-        "Low",
-        "High"
-    ]
+  "fetal_health": ["Normal", "Suspect", "Pathological"],
+  "alzheimers": ["Non", "VeryMild", "Mild", "Moderate"],
+  "stroke_risk": ["Low", "High"]
 }

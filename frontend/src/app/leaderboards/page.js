@@ -24,6 +24,16 @@ const BenchmarksPage = () => {
     ["accuracy", (a, b) => b.accuracy - a.accuracy],
     ["count", (a, b) => b.count - a.count],
     ["entry_time", (a, b) => new Date(b.entry_time) - new Date(a.entry_time)],
+
+    // Sorting for entry_time_hours (Descending: newest first)
+    [
+      "entry_time_hours",
+      (a, b) => {
+        const getHours = (str) =>
+          str === "Now" ? 0 : parseInt(str.split(" ")[0]);
+        return getHours(a.entry_time_hours) - getHours(b.entry_time_hours);
+      },
+    ],
   ]);
 
   const sortingMapAscending = new Map([
@@ -32,6 +42,16 @@ const BenchmarksPage = () => {
     ["accuracy", (a, b) => a.accuracy - b.accuracy],
     ["count", (a, b) => a.count - b.count],
     ["entry_time", (a, b) => new Date(a.entry_time) - new Date(b.entry_time)],
+
+    // Sorting for entry_time_hours (Ascending: oldest first)
+    [
+      "entry_time_hours",
+      (a, b) => {
+        const getHours = (str) =>
+          str === "Now" ? 0 : parseInt(str.split(" ")[0]);
+        return getHours(b.entry_time_hours) - getHours(a.entry_time_hours);
+      },
+    ],
   ]);
 
   useEffect(() => {
@@ -44,28 +64,49 @@ const BenchmarksPage = () => {
         const data = await response.json();
         console.log(data);
 
-        // Makes minor formatting changes
-        const updatedData = data.map((d) => ({
-          ...d,
-          accuracy: parseFloat((d.accuracy * 100).toFixed(2)),
-          entry_time: new Date(d.entry_time).toLocaleDateString("en-US"),
-        }));
+        const now = new Date();
+
+        // Format and add entry_time_hours property
+        const updatedData = data.map((d) => {
+          const entryDate = new Date(d.entry_time);
+          const timeDiffMs = now - entryDate;
+          const timeDiffHours = Math.floor(timeDiffMs / (1000 * 60 * 60)); // Convert to hours
+
+          let timeAgo;
+          if (timeDiffHours < 1) {
+            timeAgo = "Now";
+          } else if (timeDiffHours === 1) {
+            timeAgo = "1 hour ago";
+          } else {
+            timeAgo = `${timeDiffHours} hours ago`;
+          }
+
+          return {
+            ...d,
+            accuracy: parseFloat((d.accuracy * 100).toFixed(2)),
+            entry_time: entryDate.toLocaleDateString("en-US"),
+            entry_time_hours: timeAgo, // New property added
+          };
+        });
 
         // Groups data if both benchmark and model name is same
         // Takes the latest entry_time and accuracy
         // Counts the amount of tests
+        let num = 1;
         const groupedData = Object.values(
           updatedData.reduce((acc, entry) => {
             const key = `${entry.benchmark}-${entry.model}`; // Unique key for grouping
 
             if (!acc[key]) {
-              acc[key] = { ...entry, count: 1 };
+              acc[key] = { ...entry, count: 1, id: num };
+              num += 1;
             } else {
               acc[key].count += 1;
 
               // Update latest entry_time and stakersNum
               if (new Date(entry.entry_time) > new Date(acc[key].entry_time)) {
                 acc[key].entry_time = entry.entry_time;
+                acc[key].entry_time_hours = entry.entry_time_hours;
                 acc[key].accuracy = entry.accuracy;
               }
             }
@@ -149,7 +190,7 @@ const BenchmarksPage = () => {
           </h3>
           <h3 className={"lb_header_text"}>
             <div>
-              Past Acc.
+              Accuracy
               <SortArrow
                 category={"accuracy"}
                 handleChange={handleSortChange}
@@ -160,7 +201,7 @@ const BenchmarksPage = () => {
           </h3>
           <h3 className={"lb_header_text"}>
             <div>
-              Tot. Stakers
+              Test Count
               <SortArrow
                 category={"count"}
                 handleChange={handleSortChange}
@@ -169,12 +210,22 @@ const BenchmarksPage = () => {
               ></SortArrow>
             </div>
           </h3>
-          <h3 className={"lb_header_text"}>Tot. Yield</h3>
           <h3 className={"lb_header_text"}>
             <div>
-              Last Tested
+              Test Date
               <SortArrow
                 category={"entry_time"}
+                handleChange={handleSortChange}
+                activeCategory={activeCategory}
+                currDirection={currDir}
+              ></SortArrow>
+            </div>
+          </h3>
+          <h3 className={"lb_header_text"}>
+            <div>
+              Test Time
+              <SortArrow
+                category={"entry_time_hours"}
                 handleChange={handleSortChange}
                 activeCategory={activeCategory}
                 currDirection={currDir}
@@ -187,14 +238,14 @@ const BenchmarksPage = () => {
             {benchmarkData.map((d, i) => {
               return (
                 <Benchmark
-                  imageSrc={`model${(i % 6) + 1}.png`}
+                  imageSrc={`model${((d.id - 1) % 6) + 1}.png`}
                   model={d.model}
                   benchmark={d.benchmark}
                   accuracy={d.accuracy}
                   stakersNum={d.count}
-                  yields={200283}
                   testDate={d.entry_time}
-                  key={d._id}
+                  testTime={d.entry_time_hours}
+                  key={d.id}
                   onClick={() => setSelectedBenchmark(d)}
                 ></Benchmark>
               );

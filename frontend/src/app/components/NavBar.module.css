@@ -27,6 +27,10 @@
   filter: invert(1);
 }
 
+.logo img:hover {
+  filter: invert(0.9);
+}
+
 .navLinks {
   display: flex;
   justify-content: center;
@@ -40,6 +44,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 0px;
+  width: 500px;
   align-items: center;
 }
 

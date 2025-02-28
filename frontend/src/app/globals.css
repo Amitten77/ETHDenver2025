@@ -73,6 +73,37 @@ body {
   margin: 0;
 }
 
+.page_header {
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  /* justify-content: center; */
+  width: 100vw;
+}
+
+.page_title {
+  font-size: 100px;
+  /* padding: 50px; */
+  /* transform: rotate(36deg); */
+  /* padding-left: 200px; */
+  color: white;
+  z-index: 100;
+  margin-bottom: -10px;
+  font-weight: 500;
+}
+
+.page_subtitle {
+  font-size: 32px;
+  color: #fff;
+  margin-left: 5px;
+  padding-bottom: 20px;
+}
+
+.page_header_buttons {
+  display: flex;
+  padding-bottom: 60px;
+}
+
 .page_start_spacer {
   margin-top: 100px;
 }
@@ -292,6 +323,7 @@ body {
 .operator_content img {
   width: 30px;
   margin-right: -50px;
+  border-radius: 300px;
   /* background-color: red; */
 }
 
@@ -320,8 +352,8 @@ body {
   padding: 5px;
   border-radius: 20px;
   transition: 0.2s width;
-  width: 380px;
-  height: 400px;
+  width: 480px;
+  height: 550px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   text-align: center;
   transform: translateY(-30px);
@@ -404,6 +436,7 @@ body {
 }
 
 .delegate_current_operator div img {
+  border-radius: 300px;
   width: 25px;
   height: 25px;
 }
@@ -466,6 +499,7 @@ body {
   line-height: 1;
   margin-bottom: 0;
   margin-top: 0;
+  font-size: 36px;
 }
 
 .modal-header h3 {
@@ -482,9 +516,9 @@ body {
 
 /* Image styling */
 .modal-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
+  width: 70px;
+  height: 70px;
+  border-radius: 300px;
   /* margin-bottom: 10px; */
   margin: 0;
 }
@@ -511,7 +545,7 @@ body {
 .delegate_button {
   width: 110px;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: #3d1c67;
   color: white;
 }
@@ -530,6 +564,127 @@ body {
 
 .delegate_button:hover {
   filter: brightness(0.8);
+}
+
+.model {
+  gap: 80px;
+}
+
+.add_model {
+  width: 500px;
+  height: 520px;
+  background-color: rgb(255, 255, 255);
+  flex-direction: column;
+  margin-top: 15px !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.add_model h3 {
+  color: black;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.add_model p {
+  color: #333;
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.add_model h4 {
+  font-size: 22px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.add_model select {
+  height: 40px;
+  width: 200px;
+  /* margin: 0; */
+}
+
+.add_model input {
+  height: 35px;
+  width: 200px;
+  margin-right: 15px;
+}
+
+.model_type {
+  margin-bottom: 20px;
+}
+
+.add_model button {
+  border-radius: 10px;
+  flex: 0.5;
+}
+
+.add_model button:hover {
+  filter: brightness(0.9);
+}
+
+.add_model div {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.add_model div p {
+  flex: 0.5;
+  margin: 0;
+  text-align: right;
+}
+
+.divider {
+  width: 100%; /* Full width of parent div */
+  border: none; /* Remove default styling */
+  height: 1px; /* Line thickness */
+  background-color: black; /* Line color */
+}
+
+.model_info {
+  width: 390px;
+}
+
+.three-container {
+  width: 625px;
+  height: 525px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: white; */
+}
+
+.confusion_matrix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 230px;
+}
+
+.benchmark_modal_input {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.benchmark_modal_input select {
+  height: 40px;
+  width: 200px;
+  border-radius: 10px;
+  /* margin-bottom: 15px; */
+  /* margin-right: 15px; */
 }
 
 /* Fade-in animation */
@@ -561,16 +716,6 @@ h5,
 h6,
 p {
   font-family: var(--font-inter);
-}
-
-.page_title {
-  font-size: 100px;
-  /* padding: 50px; */
-  /* transform: rotate(36deg); */
-  padding-bottom: 60px;
-  /* padding-left: 200px; */
-  color: white;
-  z-index: 100;
 }
 
 h1 {
