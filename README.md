@@ -20,7 +20,7 @@ We are both interested in continuing to build EigenHealth, as we believe this is
 
 1) One of our big visions is **web3 abstraction** for the hospitals. Hospitals pay a subscription fee in USD, and under the hood that fee is used for staking rewards for the operators powering the AVS that secures our system. In other words, the way EigenHealth calculates benchmark results for AI models is abstracted away from the hospitals, but they can be assured that these results are accurate and secure as they are leveraged from the underlying AVS system.
 
-2) We would also like to offer more flexibility in benchmarks results of a given model. For example, hospitals should also be able to group model performance into buckets such as gender and age. This is because may hospitals/clincs specialize on patients of a certain age/other factors, so this feature will help further personalize models to hospitals.
+2) We would also like to offer more flexibility in benchmarks results of a given model. For example, hospitals should also be able to group model performance into buckets such as gender and age. This is because some hospitals/clincs may specialize on patients of a specific demographic/background, so this feature will help further personalize models to hospitals.
 
 3) We would also like to build a protocol that enforces stakers to distribuite staking rewards fairly amonst delegators, similar to a model like **Rocket Pool**
 
