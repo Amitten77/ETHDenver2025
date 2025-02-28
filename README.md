@@ -28,7 +28,19 @@ We are both interested in continuing to build EigenHealth, as we believe this is
 
 ### EigenHealth Technical Stack
 
-We built the frontend using Next.js and Javascript. For our backend, we used MongoDB (**backend_mongodb**) to store staker data and benchmark data, as the Holesky ETH network was currently down during the duration of this hackathon. We used a python flask server (**benchmark_backend**) for operators to run benchmark testing, and the (**ai_benchmark_avs**) folder leveraged Othentic's stack to verify model results and reach consensus amonst operators. Our (**p2p_backend**) also runs to automate the process of delegators giving tokens to the staker, and the process of the staker staking and restaking the tokens using the P2P API. 
+Next.js/Javascript: Frontend
+
+MongoDB: (**backend_mongodb**) to store staker data and benchmark data, as the Holesky ETH network was currently down during the duration of this hackathon
+
+Flask/Python: We used a python flask server (**benchmark_backend**) for operators to run benchmark testing
+
+Othentic: the (**ai_benchmark_avs**) folder leveraged Othentic's stack to verify model results and reach consensus amonst operators
+
+P2P: (**p2p_backend**) also runs to automate the process of delegators giving tokens to the staker, and the process of the staker staking and restaking the tokens using the P2P API
+
+AWS: Storing larger AI model/benchmark files for our Operators to pull and use.
+
+
 
 ### EigenHealth P2P Integration
 
