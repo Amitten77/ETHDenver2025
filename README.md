@@ -10,7 +10,7 @@ As society becomes increasingly intertwined with AI in 2025, hospitals strive to
 
 ### What is EigenHealth?
 
-EigenHealth is an application for hospitals and clinic to get reliable benchmarks on biotech companies that offer AI Models. We use AVS as a service (using Othentic stack) to help validate that a healthcare model is as accurate as it claims, as well as verifying more nuanced details on which groups the AI model performs stronger on. The hospital simply puts in the AI model and the benchmark test, and once the results are validated through the AVS, the hospital can analyze its performance against other models on our leaderboard and make a more informed decision. 
+EigenHealth is an application for hospitals and clinic to get reliable benchmarks on biotech companies that offer AI Models. We use AVS as a service (using Othentic stack) to help validate that a healthcare model is as accurate as it claims, as well as verifying more nuanced details on which groups the AI model performs stronger on. The hospital simply puts in the AI model and the benchmark test, and once the results are validated through the AVS, the hospital can analyze its performance against other models on our leaderboard and make a more informed decision on which model to move forward with in its practice. 
 
 Additionally, we also have a page for stakers who want to delegate their tokens to operators to help further secure the network (using P2P API). 
 
