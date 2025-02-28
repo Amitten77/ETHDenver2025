@@ -4,6 +4,8 @@
 
 ### Tags: #healthcare, #artificial_intelligence, #avs, #web3abstraction
 
+## Demo Video: https://youtu.be/7xcUEemwszY?si=wMi47aEGWldzCc0r
+
 ## Background (Sampson vs. HeartWise Health Systems Corporation (2023))
 
 As society becomes increasingly intertwined with AI in 2025, hospitals strive to use AI/ML models to provide state-of-the-art care to their patients. Hospitals have many tools to choose from, and lives are at stake when hospitals make a decision. There unfortuantely isn't much accountability when an AI company makes a claim versus how the model actually performs, and this has led to some serious issues. Most notably, **Sampson v. HeartWise Health Systems Corporation (2023)** is the case regarding 29 year old Joshua Sampson. He went to Isaac Health for cardiac screening, where they used HeartWise Health Systems Corporation's AI screening software which didn't detect any problems with Joshua's heart. A few weeks later, Joshua died from arrhythmia, and the court found not HeartWise Health Systems Corporation which developed the model, but Isaac Health, liable for a wrongful death action. It also turned out that the model was trained and upheld accuracy claims for ONLY those above 50 years ago, which wasn't clear to Isaac Health at the time. 
