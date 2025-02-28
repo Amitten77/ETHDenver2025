@@ -6,19 +6,19 @@
 
 ### Demo Video: 
 
-### Background (Sampson vs. HeartWise Health Systems Corporation (2023))
+## Background (Sampson vs. HeartWise Health Systems Corporation (2023))
 
 As society becomes increasingly intertwined with AI in 2025, hospitals strive to use AI/ML models to provide state-of-the-art care to their patients. Hospitals have many tools to choose from, and lives are at stake when hospitals make a decision. There unfortuantely isn't much accountability when an AI company makes a claim versus how the model actually performs, and this has led to some serious issues. Most notably, **Sampson v. HeartWise Health Systems Corporation (2023)** is the case regarding 29 year old Joshua Sampson. He went to Isaac Health for cardiac screening, where they used HeartWise Health Systems Corporation's AI screening software which didn't detect any problems with Joshua's heart. A few weeks later, Joshua died from arrhythmia, and the court found not HeartWise Health Systems Corporation which developed the model, but Isaac Health, liable for a wrongful death action. It also turned out that the model was trained and upheld accuracy claims for ONLY those above 50 years ago, which wasn't clear to Isaac Health at the time. 
 
-#### Thus, EigenHealth comes in to increase the transparency between hospitals and the biotech companies building these AI models. 
+### Thus, EigenHealth comes in to increase the transparency between hospitals and the biotech companies building these AI models. 
 
-### What is EigenHealth?
+## What is EigenHealth?
 
 EigenHealth is an application for hospitals and clinic to get reliable benchmarks on biotech companies that offer AI Models. We use AVS as a service (using Othentic stack) to help validate that a healthcare model is as accurate as it claims, as well as verifying more nuanced details on which groups the AI model performs stronger on. The hospital simply puts in the AI model and the benchmark test, and once the results are validated through the AVS, the hospital can analyze its performance against other models on our leaderboard and make a more informed decision on which model to move forward with in its practice. 
 
 Additionally, we also have a page for stakers who want to delegate their tokens to operators to help further secure the network (using P2P API). 
 
-### What is the future of EigenHealth?
+## What is the future of EigenHealth?
 
 We are both interested in continuing to build EigenHealth, as we believe this is a strong use case that has an impact on everyone who recieves care from a hospital. 
 
@@ -28,7 +28,7 @@ We are both interested in continuing to build EigenHealth, as we believe this is
 
 3) We would also like to build a protocol that enforces stakers to distribuite staking rewards fairly amonst delegators, similar to a model like **Rocket Pool**
 
-### EigenHealth Technical Stack
+## EigenHealth Technical Stack
 
 Next.js/Javascript: Frontend
 
@@ -46,7 +46,7 @@ AWS: Storing larger AI model/benchmark files for our Operators to pull and use.
 
 
 
-### EigenHealth P2P Integration
+## EigenHealth P2P Integration
 
 From the frontend (DelegateInput component), the user delegates the ETH specified to a contract. Once that ETH is delegated and the amount in the contract reaches >32 ETH, the countract balance is autoamtically sent to the owner (staker), and the reportWithdrawal.js code in p2p_backend automatically handles the process of staking and restaking to the proper Operator on behalf of the staker. In the future, we will implement a contract that fairly distribuites the staking rewards to all delegators. Note that the HoleskyDeposit contract that stores the funds for the staker is also in the p2p_backend folder.
 
@@ -54,11 +54,11 @@ Since the Holesky network is down, we switched our implementation for our demo. 
 
 ![Alt Text](images/p2p.png)
 
-### EigenHealth Othentic Integration
+## EigenHealth Othentic Integration
 
 The **ai_benchmark_avs** contains all of our AVS logic using the Othentic stack. The performer first recieves a get request from the frontend with model and benchmark parameters. The performer then contacts the benchmark_backend in python with these parameters, and the benchmark_backend pulls the necessary files from AWS and gets the results for the performer. The operators in the system performs the exact same process, and if their accuracy/confusion matrix is within a statistically significant threshold of the origin performer, the operation is approved. The aggregator then puts the transactionHash on polyscan, and our frontend uses the data stored in the transaction to display results to the user. We deployed our AVS on Holesky L1 and Polygon Amoy L2. 
 
 ![Alt Text](images/othentic.png)
 
-### Our App
+## Our App
 
