@@ -204,7 +204,7 @@ const DelegatePage = () => {
             <div className="delegate_current">
               <div className={"delegate_current_header"}>
                 <h3>Claimable Rewards</h3>
-                <h2>{stakerEntry.yield} ETH</h2>
+                <h2>{"<0.0001"} ETH</h2>
                 <div className={"delegate_current_options"}>
                   <div className={"delegate_current_operator"}>
                     <h3>Current Operator:</h3>

@@ -17,8 +17,10 @@ export default function Home() {
             AVS Secured Healthcare AI Benchmarking
           </h3>
           <div className="page_header_buttons">
-            <ButtonWhiteFilled path="/test">Restake your ETH</ButtonWhiteFilled>
-            <ButtonWhiteTransparent path="/delegate">
+            <ButtonWhiteFilled path="/delegate">
+              Restake your ETH
+            </ButtonWhiteFilled>
+            <ButtonWhiteTransparent path="/test">
               Benchmark a Model
             </ButtonWhiteTransparent>
           </div>
