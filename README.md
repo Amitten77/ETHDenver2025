@@ -60,3 +60,9 @@ The **ai_benchmark_avs** contains all of our AVS logic using the Othentic stack.
 
 ## Our App
 
+![Alt Text](images/delegate.png)
+
+![Alt Text](images/leaderboard.png)
+
+![Alt Text](images/delegate_pop_up.png)
+
