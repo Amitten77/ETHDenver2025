@@ -1,5 +1,7 @@
 # Eigen Games 2025: EigenHealth 🏥 👨‍⚕️ 👩‍⚕️
 
+### By Amit Krishnaiyer and Dylan Subramanian from the University of Illinois Urbana-Champaign
+
 ### Tags: #healthcare, #artificial_intelligence, #avs, #web3abstraction
 
 ### Background (Sampson vs. HeartWise Health Systems Corporation (2023))
