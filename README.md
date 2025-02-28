@@ -40,6 +40,8 @@ P2P: (**p2p_backend**) also runs to automate the process of delegators giving to
 
 AWS: Storing larger AI model/benchmark files for our Operators to pull and use.
 
+![Alt Text](images/techstack.png)
+
 
 
 ### EigenHealth P2P Integration
