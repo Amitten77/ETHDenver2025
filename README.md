@@ -1,6 +1,6 @@
 # Eigen Games 2025: EigenHealth 🏥 👨‍⚕️ 👩‍⚕️
 
-### Tags: #healthcare, #artifial_intelligence, #avs, #web3abstraction
+### Tags: #healthcare, #artificial_intelligence, #avs, #web3abstraction
 
 ### Background (Sampson vs. HeartWise Health Systems Corporation (2023))
 
